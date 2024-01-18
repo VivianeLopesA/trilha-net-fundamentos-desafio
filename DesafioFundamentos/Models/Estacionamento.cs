@@ -1,3 +1,5 @@
+using DesafioFundamentos.Ferramentas;
+
 namespace DesafioFundamentos.Models
 {
     public class Estacionamento
@@ -5,6 +7,8 @@ namespace DesafioFundamentos.Models
         private decimal precoInicial = 0;
         private decimal precoPorHora = 0;
         private List<string> veiculos = new List<string>();
+
+        private Ferramentas.Ferramentas ferramenta = new Ferramentas.Ferramentas();
 
         public Estacionamento(decimal precoInicial, decimal precoPorHora)
         {
@@ -16,16 +20,26 @@ namespace DesafioFundamentos.Models
         {
             
             Console.WriteLine("Digite a placa do veículo para estacionar:");
-            string placa = Console.ReadLine();
-            veiculos.Add(placa);
+            string placa = ferramenta.RetiraVazioString(Console.ReadLine());
+
+            bool testeVazio = ferramenta.EhVazio(placa);
+
+            if(!testeVazio){
+                veiculos.Add(placa);
+            }else{
+                Console.WriteLine("Placa inválida. Por favor tente novamente");
+            }
+            
         }
 
+        
         public void RemoverVeiculo()
         {
             Console.WriteLine("Digite a placa do veículo para remover:");
 
             
-            string placa = Console.ReadLine();
+            string placa = ferramenta.RetiraVazioString(Console.ReadLine());
+
 
             
             if (veiculos.Any(x => x.ToUpper() == placa.ToUpper()))

@@ -1,4 +1,5 @@
-﻿using DesafioFundamentos.Models;
+﻿using System.Runtime.InteropServices;
+using DesafioFundamentos.Models;
 
 // Coloca o encoding para UTF8 para exibir acentuação
 Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -8,10 +9,37 @@ decimal precoPorHora = 0;
 
 Console.WriteLine("Seja bem vindo ao sistema de estacionamento!\n" +
                   "Digite o preço inicial:");
-precoInicial = Convert.ToDecimal(Console.ReadLine());
+
+while(precoInicial == 0)
+{
+    try{
+
+        precoInicial = Convert.ToDecimal(Console.ReadLine());
+
+    }catch(System.FormatException ex)
+    {
+        Console.WriteLine($"Valor inicial digitado foi inválido: {ex.Message} Por favor tente novamente.");
+    }
+
+    
+}
 
 Console.WriteLine("Agora digite o preço por hora:");
-precoPorHora = Convert.ToDecimal(Console.ReadLine());
+
+while(precoPorHora == 0)
+{
+    
+    try{
+
+        precoPorHora = Convert.ToDecimal(Console.ReadLine());
+
+    }catch(System.FormatException ex)
+    {
+        Console.WriteLine($"Valor por hora digitado foi inválido: {ex.Message} Por favor tente novamente.");
+    }
+}
+
+
 
 // Instancia a classe Estacionamento, já com os valores obtidos anteriormente
 Estacionamento es = new Estacionamento(precoInicial, precoPorHora);
@@ -33,10 +61,17 @@ while (exibirMenu)
     {
         case "1":
             es.AdicionarVeiculo();
-            break;
+            break;           
 
         case "2":
-            es.RemoverVeiculo();
+            try
+            {
+                es.RemoverVeiculo();    
+
+            }catch(System.FormatException ex)
+            {
+                Console.WriteLine($"Valor digitado foi inválido: {ex.Message}. Por favor tente novamente.");
+            }
             break;
 
         case "3":
