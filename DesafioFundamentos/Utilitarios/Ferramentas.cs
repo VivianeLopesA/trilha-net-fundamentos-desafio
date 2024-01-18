@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DesafioFundamentos.Ferramentas
+namespace DesafioFundamentos.Utilitarios
 {
-    public class Ferramentas
+ 
+    public static class Ferramentas
+
     {
-        public bool EhVazio(string texto){
+        public static bool EhVazio(string texto){
             if(texto != string.Empty)
             {
                 return false;
@@ -16,10 +18,11 @@ namespace DesafioFundamentos.Ferramentas
             }
         }
 
-        public string RetiraVazioString(string texto){
+        public static string RetiraVazioString(string texto){
             return texto.Replace(" ", "");
         }
 
          
     }
+    
 }

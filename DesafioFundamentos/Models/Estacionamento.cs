@@ -1,4 +1,4 @@
-using DesafioFundamentos.Ferramentas;
+using DesafioFundamentos.Utilitarios;
 
 namespace DesafioFundamentos.Models
 {
@@ -8,7 +8,7 @@ namespace DesafioFundamentos.Models
         private decimal precoPorHora = 0;
         private List<string> veiculos = new List<string>();
 
-        private Ferramentas.Ferramentas ferramenta = new Ferramentas.Ferramentas();
+        
 
         public Estacionamento(decimal precoInicial, decimal precoPorHora)
         {
@@ -20,9 +20,9 @@ namespace DesafioFundamentos.Models
         {
             
             Console.WriteLine("Digite a placa do veículo para estacionar:");
-            string placa = ferramenta.RetiraVazioString(Console.ReadLine());
+            string placa = Utilitarios.Ferramentas.RetiraVazioString(Console.ReadLine());
 
-            bool testeVazio = ferramenta.EhVazio(placa);
+            bool testeVazio = Utilitarios.Ferramentas.EhVazio(placa);
 
             if(!testeVazio){
                 veiculos.Add(placa);
@@ -38,7 +38,7 @@ namespace DesafioFundamentos.Models
             Console.WriteLine("Digite a placa do veículo para remover:");
 
             
-            string placa = ferramenta.RetiraVazioString(Console.ReadLine());
+            string placa = Utilitarios.Ferramentas.RetiraVazioString(Console.ReadLine());
 
 
             
