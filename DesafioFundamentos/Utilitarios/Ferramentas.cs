@@ -22,6 +22,11 @@ namespace DesafioFundamentos.Utilitarios
             return texto.Replace(" ", "");
         }
 
+        public static string RetirarPontoParaVirgula(string texto)
+        {
+            return texto.Replace(".", ",");
+        }
+
          
     }
     

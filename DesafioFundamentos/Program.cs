@@ -1,5 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 using DesafioFundamentos.Models;
+using DesafioFundamentos.Utilitarios;
 
 // Coloca o encoding para UTF8 para exibir acentuação
 Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -14,7 +15,8 @@ while(precoInicial == 0)
 {
     try{
 
-        precoInicial = Convert.ToDecimal(Console.ReadLine());
+        string precoTexto = Console.ReadLine();
+        precoInicial = Convert.ToDecimal(Ferramentas.RetirarPontoParaVirgula(precoTexto));
 
     }catch(System.FormatException ex)
     {
@@ -31,7 +33,8 @@ while(precoPorHora == 0)
     
     try{
 
-        precoPorHora = Convert.ToDecimal(Console.ReadLine());
+        string precoTexto = Console.ReadLine();
+        precoPorHora = Convert.ToDecimal(Ferramentas.RetirarPontoParaVirgula(precoTexto));
 
     }catch(System.FormatException ex)
     {
