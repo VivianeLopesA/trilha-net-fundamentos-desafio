@@ -11,19 +11,23 @@ public class EstacionamentoTests
     public void AdicionarVeiculoPlacaAABB11()
     {   
 
+        
+        string resultado = es.AdicionarVeiculoTestes("AABB11");
 
-        bool resultado = es.AdicionarVeiculoTestes("AABB11");
+        string resultadoEsperado = "AABB11";
 
-        Assert.True(resultado);
+        Assert.Equal(resultadoEsperado, resultado);
     }
 
     [Fact]
     public void NaoAdicionarVeiculoPlacaVazia()
     {   
 
-        bool resultado = es.AdicionarVeiculoTestes("");
+        string resultado = es.AdicionarVeiculoTestes("");
 
-        Assert.False(resultado);
+        string resultadoEsperado = "Erro no teste";
+
+        Assert.Equal(resultadoEsperado, resultado);
     }
 
     
@@ -32,7 +36,6 @@ public class EstacionamentoTests
     {   
       
         es.AdicionarVeiculoTestes("  AA gg 22      ");
-        
         string placaSemEspaco = "AAgg22";
 
         string resultado = es.procurarVeiculos(placaSemEspaco);
@@ -41,13 +44,59 @@ public class EstacionamentoTests
     }
 
     [Fact]
+    public void RemoverVeiculoRRFF47Com2HorasEstacionado(){
+
+        es.AdicionarVeiculoTestes("RRFF47");
+        string esperado = $"{"RRFF47"} : {9}";
+
+        string resultado = es.RemoverVeiculoTestes("RRFF47", "2");
+
+
+        Assert.Equal(esperado, resultado);
+    }
+
+    [Fact]
+    public void NaoRemoverPlacaNaoCadastradaRR55EE()
+    {
+        // Given
+        string placaNaoCadastrada = "RR55EE";
+    
+        // When
+        string resultado = es.RemoverVeiculoTestes(placaNaoCadastrada, "5");
+        // Then
+
+        Assert.Equal("Erro no teste", resultado);
+        
+    }
+
+    [Fact]
+    public void ListarTodosVeiculosCadastrados()
+    {
+        List<string> resultadoEsperado = [];
+
+        resultadoEsperado.Add(es.AdicionarVeiculoTestes("25ggAA"));
+        resultadoEsperado.Add(es.AdicionarVeiculoTestes("96REgg"));
+        resultadoEsperado.Add(es.AdicionarVeiculoTestes("LL26ww"));
+
+        List<string> resultado = es.ListarVeiculosTestes();
+
+
+        Assert.Equal(resultadoEsperado, resultado);
+
+
+    }
+
+    [Fact]
     public void ProcurarPlacaAABB11(){
 
         es.AdicionarVeiculoTestes("AABB11");
         string placaProcurada = "AABB11";
+
         string resultado = es.procurarVeiculos(placaProcurada);
 
         Assert.Equal(placaProcurada, resultado);
     }
+
+
 
 }
