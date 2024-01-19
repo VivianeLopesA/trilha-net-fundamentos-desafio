@@ -1,3 +1,5 @@
+using System.Diagnostics.Contracts;
+using System.Security.Cryptography.X509Certificates;
 using DesafioFundamentos.Utilitarios;
 
 namespace DesafioFundamentos.Models
@@ -20,14 +22,33 @@ namespace DesafioFundamentos.Models
         {
             
             Console.WriteLine("Digite a placa do veículo para estacionar:");
-            string placa = Utilitarios.Ferramentas.RetiraVazioString(Console.ReadLine());
+            string placa = Ferramentas.RetiraVazioString(Console.ReadLine());
 
-            bool testeVazio = Utilitarios.Ferramentas.EhVazio(placa);
+            bool testeVazio = Ferramentas.EhVazio(placa);
 
             if(!testeVazio){
                 veiculos.Add(placa);
             }else{
                 Console.WriteLine("Placa inválida. Por favor tente novamente");
+            }
+            
+        }
+
+
+        public bool AdicionarVeiculoTestes(string placaTeste)
+        {
+            
+            Console.WriteLine("Digite a placa do veículo para estacionar:");
+            string placa = Ferramentas.RetiraVazioString(placaTeste);
+
+            bool testeVazio = Ferramentas.EhVazio(placa);
+
+            if(!testeVazio){
+                veiculos.Add(placa);
+                return true;
+            }else{
+                Console.WriteLine("Placa inválida. Por favor tente novamente");
+                return false;
             }
             
         }
@@ -38,7 +59,7 @@ namespace DesafioFundamentos.Models
             Console.WriteLine("Digite a placa do veículo para remover:");
 
             
-            string placa = Utilitarios.Ferramentas.RetiraVazioString(Console.ReadLine());
+            string placa = Ferramentas.RetiraVazioString(Console.ReadLine());
 
 
             
@@ -80,6 +101,20 @@ namespace DesafioFundamentos.Models
             {
                 Console.WriteLine("Não há veículos estacionados.");
             }
+        }
+
+
+        public string procurarVeiculos(string placa){
+
+            if (veiculos.Any(x => x.ToUpper() == placa.ToUpper())){
+
+                return placa;
+
+            }else{
+
+                return "Placa não localizada";
+            }
+            
         }
     }
 }
