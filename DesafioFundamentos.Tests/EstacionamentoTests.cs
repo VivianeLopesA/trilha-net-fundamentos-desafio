@@ -72,13 +72,14 @@ public class EstacionamentoTests
     [Fact]
     public void ListarTodosVeiculosCadastrados()
     {
-        List<string> resultadoEsperado = [];
+        
+        es.AdicionarVeiculoTestes("25ggAA");
+        es.AdicionarVeiculoTestes("96REgg");
+        es.AdicionarVeiculoTestes("LL26ww");
 
-        resultadoEsperado.Add(es.AdicionarVeiculoTestes("25ggAA"));
-        resultadoEsperado.Add(es.AdicionarVeiculoTestes("96REgg"));
-        resultadoEsperado.Add(es.AdicionarVeiculoTestes("LL26ww"));
 
         List<string> resultado = es.ListarVeiculosTestes();
+        List<string> resultadoEsperado = ["25ggAA", "96REgg" , "LL26ww"];
 
 
         Assert.Equal(resultadoEsperado, resultado);
